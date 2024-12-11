@@ -1,5 +1,5 @@
-package com.mycompany.ifood.java;
 
+package com.mycompany.ifoodd.java;
 public class DonoRestaurante extends Usuario {
     private Restaurante restaurante;
 
