@@ -1,40 +1,40 @@
-package com.mycompany.ifoodd.java;
-  public class Comida extends Produto {
-    private String tipoCozinha;
-    private String tipoPrato;
-    
+    package com.mycompany.ifoodd.java; 
+    public class Bebida extends Produto {
+    private int tamanhoML;
+    private boolean alcoolica;
 
-    public Comida(int identificacao, String nome, String descricao, double preco, int tempoPreparo, String tipoCozinha, String tipoPrato) {
+    public Bebida(int identificacao, String nome, String descricao, double preco, int tempoPreparo, int tamanhoML, boolean alcoolica) {
         super(identificacao, nome, descricao, preco, tempoPreparo);
-        this.tipoCozinha = tipoCozinha;
-        this.tipoPrato = tipoPrato;
-       
+        this.tamanhoML = tamanhoML;
+        this.alcoolica = alcoolica;
     }
 
     @Override
     public void exibirDetalhes() {
-        System.out.println("Comida: " + getNome() + " | Tipo de cozinha: " + tipoCozinha + 
-                           " | Tipo de Prato: "+ tipoPrato);
+        System.out.println("Bebida: " + getNome() + " | Tamanho: " + tamanhoML + "ml | Alcoólica: " + alcoolica);
     }
-    public String getTipoCozinha(){
-        return tipoCozinha;
-        
-    }
-    public void setTipoCozinha(String tipoCozinha){
-        if(tipoCozinha.length()>0){
-            this.tipoCozinha = tipoCozinha;
+    public int getTamanhoML(){
+        return tamanhoML;
+    } 
+    public void setTamanhoML(int tamanhoML){
+        if(tamanhoML > 0){
+            this.tamanhoML = tamanhoML;
+  
         } 
     }
-    public String getTipoPrato(){
-        return tipoPrato;
-        
+    public boolean getAlcoolica(){
+        return alcoolica;
     }
-    public void setTipoPrato(String tipoPrato){
-        if(tipoPrato.length()>0){
-            this.tipoPrato = tipoPrato;
+    public void setAlcoolica(boolean alcoolica){
+        if(alcoolica == true ){
+           this.alcoolica = alcoolica;
+           System.out.println("Essa bebiba é: Caipirinha ");
         }
-        
+        else {
+            System.out.println("Não é uma caipirinha");
+        }
     }
-   }
- 
+    }
 
+
+    
