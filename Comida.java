@@ -1,5 +1,5 @@
-package com.mycompany.ifood.java;
-   public class Comida extends Produto {
+package com.mycompany.ifoodd.java;
+  public class Comida extends Produto {
     private String tipoCozinha;
     private String tipoPrato;
     
@@ -36,6 +36,5 @@ package com.mycompany.ifood.java;
         
     }
    }
-
  
 
