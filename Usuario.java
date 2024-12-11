@@ -1,5 +1,6 @@
- package com.mycompany.ifood.java; 
-    public abstract class Usuario {
+ 
+package com.mycompany.ifoodd.java;
+public abstract class Usuario {
     private int identificacao;
     private String nome;
     private String email;
@@ -59,4 +60,3 @@
 
 
     
-
