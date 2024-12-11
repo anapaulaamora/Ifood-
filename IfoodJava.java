@@ -3,12 +3,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class IfooddJava {
 
-    // Variáveis globais para armazenar os usuários cadastrados
+    // Variáveis globais para armazenar os usuários cadastrados e restaurantes
     private static Cliente clienteCadastrado;
     private static DonoRestaurante donoCadastrado;
+    private static List<Restaurante> restaurantesCadastrados = new ArrayList<>();
 
     public static void main(String[] args) {
         // Tela de login inicial
@@ -17,20 +20,22 @@ public class IfooddJava {
 
     // Tela de Login
     public static void mostrarTelaLogin() {
-        JFrame frameLogin = new JFrame("Login - iFood");
+        JFrame frameLogin = new JFrame("LOGIN - JAMP IFOOD!!");
         frameLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frameLogin.setSize(400, 300);
+        frameLogin.setSize(600, 400);
 
         JPanel panelLogin = new JPanel();
         panelLogin.setLayout(new GridLayout(4, 1, 10, 10));
         panelLogin.setBackground(Color.RED);
         panelLogin.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        JLabel lblUsuario = new JLabel("E-mail:");
+        JLabel lblUsuario = new JLabel("E-MAIL:");
         JTextField txtUsuario = new JTextField();
+        txtUsuario.setFont(new Font("Arial", Font.PLAIN, 18)); 
 
-        JLabel lblSenha = new JLabel("Senha:");
+        JLabel lblSenha = new JLabel("SENHA:");
         JPasswordField txtSenha = new JPasswordField();
+        txtUsuario.setFont(new Font("Arial", Font.PLAIN, 18)); 
 
         JButton btnEntrar = new JButton("Entrar");
         JButton btnCadastrar = new JButton("Cadastrar");
@@ -126,6 +131,7 @@ public class IfooddJava {
         JComboBox<String> comboTipoUsuario = new JComboBox<>(tiposUsuario);
 
         JButton btnCadastrar = new JButton("Cadastrar");
+        JButton btnVoltar = new JButton("Voltar");
 
         panelCadastro.add(lblNome);
         panelCadastro.add(txtNome);
@@ -153,6 +159,7 @@ public class IfooddJava {
 
         JPanel panelButton = new JPanel();
         panelButton.add(btnCadastrar);
+        panelButton.add(btnVoltar);
 
         frameCadastro.add(panelCadastro, BorderLayout.CENTER);
         frameCadastro.add(panelButton, BorderLayout.SOUTH);
@@ -164,8 +171,29 @@ public class IfooddJava {
                 String nome = txtNome.getText();
                 String email = txtEmail.getText();
                 String senha = new String(txtSenha.getPassword());
+                String telefone = txtTelefone.getText();
+                String endereco = txtEndereco.getText();
+                String cidade = txtCidade.getText();
+                String estado = txtEstado.getText();
                 String tipoUsuario = (String) comboTipoUsuario.getSelectedItem();
 
+                // Verificar se todos os campos foram preenchidos
+                if (nome.isEmpty() || email.isEmpty() || senha.isEmpty() || telefone.isEmpty() || endereco.isEmpty() || cidade.isEmpty() || estado.isEmpty()) {
+                    JOptionPane.showMessageDialog(frameCadastro, 
+                        "Por favor, preencha todos os campos para realizar o cadastro.", 
+                        "Erro de Cadastro", 
+                        JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                // Verificar se o telefone possui exatamente 10 números
+                if (!telefone.matches("\\d{11}")) {
+                    JOptionPane.showMessageDialog(frameCadastro, 
+                        "O número de telefone deve conter exatamente 11 dígitos.", 
+                        "Erro de Cadastro", 
+                        JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 if (tipoUsuario.equals("Cliente")) {
                     clienteCadastrado = new Cliente(1, nome, email, senha);
                     JOptionPane.showMessageDialog(frameCadastro, 
@@ -187,31 +215,114 @@ public class IfooddJava {
             }
         });
 
+        // Ação do botão "Voltar"
+        btnVoltar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frameCadastro.dispose();
+                mostrarTelaLogin();
+            }
+        });
+
         frameCadastro.setVisible(true);
-    }
-
-    // Tela de Visualização de Restaurantes
-    public static void mostrarTelaVisualizacaoRestaurantes() {
-        JFrame frameRestaurantes = new JFrame("Restaurantes Disponíveis");
-        frameRestaurantes.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frameRestaurantes.setSize(400, 300);
-
-        JLabel lblMensagem = new JLabel("Lista de Restaurantes", SwingConstants.CENTER);
-        frameRestaurantes.add(lblMensagem);
-
-        frameRestaurantes.setVisible(true);
     }
 
     // Tela de Cadastro de Restaurante
     public static void mostrarTelaCadastroRestaurante() {
         JFrame frameCadastroRestaurante = new JFrame("Cadastro de Restaurante");
         frameCadastroRestaurante.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frameCadastroRestaurante.setSize(400, 300);
+        frameCadastroRestaurante.setSize(500, 500);
 
-        JLabel lblMensagem = new JLabel("Cadastro de Novo Restaurante", SwingConstants.CENTER);
-        frameCadastroRestaurante.add(lblMensagem);
+        JPanel panelCadastro = new JPanel(new GridLayout(3, 2, 10, 10));
+        panelCadastro.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        JLabel lblNomeRestaurante = new JLabel("Nome do Restaurante:");
+        JTextField txtNomeRestaurante = new JTextField();
+
+        JLabel lblEnderecoRestaurante = new JLabel("Endereço do Restaurante:");
+        JTextField txtEnderecoRestaurante = new JTextField();
+
+        JButton btnCadastrarRestaurante = new JButton("Cadastrar");
+        JButton btnVoltar = new JButton("Voltar");
+
+        panelCadastro.add(lblNomeRestaurante);
+        panelCadastro.add(txtNomeRestaurante);
+
+        panelCadastro.add(lblEnderecoRestaurante);
+        panelCadastro.add(txtEnderecoRestaurante);
+
+        panelCadastro.add(btnCadastrarRestaurante);
+        panelCadastro.add(btnVoltar);
+
+        frameCadastroRestaurante.add(panelCadastro);
+
+        // Ação do botão "Cadastrar Restaurante"
+        btnCadastrarRestaurante.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String nome = txtNomeRestaurante.getText();
+                String endereco = txtEnderecoRestaurante.getText();
+
+                if (!nome.isEmpty() && !endereco.isEmpty()) {
+                    restaurantesCadastrados.add(new Restaurante(nome, endereco));
+                    JOptionPane.showMessageDialog(frameCadastroRestaurante, 
+                        "Restaurante cadastrado com sucesso!", 
+                        "Cadastro", 
+                        JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(frameCadastroRestaurante, 
+                        "Por favor, preencha todos os campos.", 
+                        "Erro", 
+                        JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
+        // Ação do botão "Voltar"
+        btnVoltar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frameCadastroRestaurante.dispose();
+                mostrarTelaLogin();
+            }
+        });
 
         frameCadastroRestaurante.setVisible(true);
     }
-    
+
+    // Tela de Visualização de Restaurantes
+    public static void mostrarTelaVisualizacaoRestaurantes() {
+        JFrame frameRestaurantes = new JFrame("Restaurantes Disponíveis");
+        frameRestaurantes.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameRestaurantes.setSize(400, 400);
+
+        JPanel panel = new JPanel(new BorderLayout());
+        JTextArea textArea = new JTextArea();
+        textArea.setEditable(false);
+
+        StringBuilder listaRestaurantes = new StringBuilder("Restaurantes cadastrados:\n\n");
+        for (Restaurante restaurante : restaurantesCadastrados) {
+            listaRestaurantes.append("- ").append(restaurante.getNome()).append(", ").append(restaurante.getEndereco()).append("\n");
+        }
+
+        textArea.setText(listaRestaurantes.toString());
+
+        JButton btnVoltar = new JButton("Voltar");
+
+        panel.add(new JScrollPane(textArea), BorderLayout.CENTER);
+        panel.add(btnVoltar, BorderLayout.SOUTH);
+
+        frameRestaurantes.add(panel);
+
+        // Ação do botão "Voltar"
+        btnVoltar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frameRestaurantes.dispose();
+                mostrarTelaLogin();
+            }
+        });
+
+        frameRestaurantes.setVisible(true);
+    }
 }
