@@ -1,5 +1,5 @@
-package com.mycompany.ifood.java; 
-public class Cliente extends Usuario {
+package com.mycompany.ifoodd.java;
+    public class Cliente extends Usuario {
 
     public Cliente(int identificacao, String nome, String email, String senha) {
         super(identificacao, nome, email, senha);
@@ -16,7 +16,7 @@ public class Cliente extends Usuario {
         System.out.println("Cadastro realizado para o cliente: " + super.getNome());
     }
 
-     public void visualizarRestaurantes(List<Restaurante> restaurantes) {
+     /*public void visualizarRestaurantes(List<Restaurante> restaurantes) {
         if (restaurantes == null || restaurantes.isEmpty()) {
             System.out.println("Nenhum restaurante cadastrado.");
             return;
@@ -26,7 +26,7 @@ public class Cliente extends Usuario {
         for (Restaurante restaurante : restaurantes) {
             System.out.println("- " + restaurante.getNome() + " | Endereço: " + restaurante.getEndereco());
         }
-    }
+    }*/
 
     public void selecionarRestaurante() {
         System.out.println("Restaurante selecionado.");
