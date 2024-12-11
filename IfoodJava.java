@@ -8,17 +8,16 @@ import java.util.List;
 
 public class IfooddJava {
 
-    // Variáveis globais para armazenar os usuários cadastrados e restaurantes
+   
     private static Cliente clienteCadastrado;
     private static DonoRestaurante donoCadastrado;
     private static List<Restaurante> restaurantesCadastrados = new ArrayList<>();
 
     public static void main(String[] args) {
-        // Tela de login inicial
         mostrarTelaLogin();
     }
 
-    // Tela de Login
+
     public static void mostrarTelaLogin() {
         JFrame frameLogin = new JFrame("LOGIN - JAMP IFOOD!!");
         frameLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,7 +51,6 @@ public class IfooddJava {
         frameLogin.add(panelLogin, BorderLayout.CENTER);
         frameLogin.add(panelButtons, BorderLayout.SOUTH);
 
-        // Ação do botão "Entrar"
         btnEntrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -82,19 +80,17 @@ public class IfooddJava {
             }
         });
 
-        // Ação do botão "Cadastrar"
         btnCadastrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frameLogin.dispose(); // Fecha a tela de login
-                mostrarTelaCadastro(); // Abre a tela de cadastro
+                frameLogin.dispose(); 
+                mostrarTelaCadastro(); 
             }
         });
 
         frameLogin.setVisible(true);
     }
 
-    // Tela de Cadastro
     public static void mostrarTelaCadastro() {
         JFrame frameCadastro = new JFrame("Cadastro de Usuário - iFood");
         frameCadastro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -164,7 +160,6 @@ public class IfooddJava {
         frameCadastro.add(panelCadastro, BorderLayout.CENTER);
         frameCadastro.add(panelButton, BorderLayout.SOUTH);
 
-        // Ação do botão "Cadastrar"
         btnCadastrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -177,7 +172,6 @@ public class IfooddJava {
                 String estado = txtEstado.getText();
                 String tipoUsuario = (String) comboTipoUsuario.getSelectedItem();
 
-                // Verificar se todos os campos foram preenchidos
                 if (nome.isEmpty() || email.isEmpty() || senha.isEmpty() || telefone.isEmpty() || endereco.isEmpty() || cidade.isEmpty() || estado.isEmpty()) {
                     JOptionPane.showMessageDialog(frameCadastro, 
                         "Por favor, preencha todos os campos para realizar o cadastro.", 
@@ -186,7 +180,6 @@ public class IfooddJava {
                     return;
                 }
 
-                // Verificar se o telefone possui exatamente 10 números
                 if (!telefone.matches("\\d{11}")) {
                     JOptionPane.showMessageDialog(frameCadastro, 
                         "O número de telefone deve conter exatamente 11 dígitos.", 
@@ -210,12 +203,12 @@ public class IfooddJava {
                         JOptionPane.INFORMATION_MESSAGE);
                 }
 
-                frameCadastro.dispose(); // Fecha a tela de cadastro
-                mostrarTelaLogin(); // Retorna à tela de login
+                frameCadastro.dispose(); 
+                mostrarTelaLogin();
             }
         });
 
-        // Ação do botão "Voltar"
+     
         btnVoltar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -227,7 +220,6 @@ public class IfooddJava {
         frameCadastro.setVisible(true);
     }
 
-    // Tela de Cadastro de Restaurante
     public static void mostrarTelaCadastroRestaurante() {
         JFrame frameCadastroRestaurante = new JFrame("Cadastro de Restaurante");
         frameCadastroRestaurante.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -256,7 +248,6 @@ public class IfooddJava {
 
         frameCadastroRestaurante.add(panelCadastro);
 
-        // Ação do botão "Cadastrar Restaurante"
         btnCadastrarRestaurante.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -278,7 +269,7 @@ public class IfooddJava {
             }
         });
 
-        // Ação do botão "Voltar"
+
         btnVoltar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -290,7 +281,7 @@ public class IfooddJava {
         frameCadastroRestaurante.setVisible(true);
     }
 
-    // Tela de Visualização de Restaurantes
+
     public static void mostrarTelaVisualizacaoRestaurantes() {
         JFrame frameRestaurantes = new JFrame("Restaurantes Disponíveis");
         frameRestaurantes.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -314,7 +305,7 @@ public class IfooddJava {
 
         frameRestaurantes.add(panel);
 
-        // Ação do botão "Voltar"
+     
         btnVoltar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
